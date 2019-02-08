@@ -1,3 +1,5 @@
+package globalround;
+
 import java.lang.*;
 import java.util.*;
 
@@ -12,7 +14,7 @@ public class B {
         return result;
     }
 
-    private static void B() {
+    private static void b() {
         Scanner sc = new Scanner(System.in);
         int lines = 3;
         String[] params = new String[lines];
@@ -27,6 +29,6 @@ public class B {
 
 
     public static void main(String[] args) {
-        B();
+        b();
     }
 }

@@ -4,31 +4,43 @@ import java.util.*;
 public class A {
 
 
-    public static void a() {
+    public static void main(String[] args) {
+        a();
+    }
+
+    private static void a() {
         //parse input
         Scanner sc = new Scanner(System.in);
         long base = sc.nextInt();
         long k = sc.nextInt();
-        // to [] of digits
+        //System.out.println("base = " + base + " k = " + k);
+        // Gather a(k) to the list
         LinkedList<Integer> digits = new LinkedList<>();
-        while (sc.hasNext()) {
+        while (sc.hasNextInt()) {
             digits.add(sc.nextInt());
+            //System.out.println(digits.getLast());
+            if (digits.size() == k) break;
         }
+        String answer = "odd";
+        //The number will be 'even' if:
+        // First case: base is even
+        // then last addition in SUM[a(k)*base^(k-1)] must be 'even'
+        // Second case: base is odd
+        // Sum of a(k) must be 'even'
 
-        // the result number
-        long resultNumber = 0;
-        //if (number == params2.length) {
-        for (int i = 0; i < k; i++) {
-            long digit = secondLine[i];
-            resultNumber += digit * Math.pow(base, (k - i - 1));
+        // Base is even
+        if (base % 2 == 0) {
+            if (digits.getLast() % 2 == 0) answer = "even";
         }
-        //}
-        String answer;
-        answer = ((resultNumber % 2) == 0) ? "even" : "odd";
+        // Base is odd
+        else {
+            long sum = 0;
+            for (Integer item : digits) {
+                sum += item;
+            }
+            if (sum % 2 == 0) answer = "even";
+        }
         System.out.println(answer);
-    }
-
-    public static void main(String[] args) {
-        a();
+        sc.close();
     }
 }
